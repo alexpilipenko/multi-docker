@@ -13,3 +13,10 @@ after_success:
   - docker build -t alp/multi-nginx ./nginx
   - docker build -t alp/multi-server ./server
   - docker build -t alp/multi-worker ./worker
+  # Log in to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take the images and poush them to docker hub
+  - docker push alp/multi-client
+  - docker push alp/multi-nginx
+  - docker push alp/multi-server
+  - docker push alp/multi-worker
